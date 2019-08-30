@@ -54,7 +54,7 @@ app.post('/books/new', async (req, res) => {
       res.end();
     };
   }
-})
+});
 
 app.get('/books/:id', async (req, res) => {
   try {
@@ -64,7 +64,19 @@ app.get('/books/:id', async (req, res) => {
   } catch (err) {
     console.error("Error grabbing book ", err);
   }
-})
+});
+
+app.post('/books/:id/delete', async (req, res) => {
+  try {
+    const chosenBook = await Book.findByPk(req.params.id);
+    console.log('deleting');
+    await chosenBook.destroy();
+    res.render('new-book', { success: "Successfully deleted book!"});
+    res.end();
+  } catch (err) {
+    console.error("Error deleting book ", err);
+  }
+});
 
 const port = process.env.port || 3000;
 app.listen(port, ()=> {
