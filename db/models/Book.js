@@ -12,14 +12,18 @@ module.exports = (sequelize) => {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true,
+        notEmpty: {
+          msg: "Please provide a Title"
+        },
       },
     },
     author: {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        notEmpty: true,
+        notEmpty: {
+          msg: "Please provide an Author",
+        },
       },
     },
     genre: {
@@ -30,5 +34,7 @@ module.exports = (sequelize) => {
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-  });
-}
+  }, { sequelize });
+
+  return Book;
+};
