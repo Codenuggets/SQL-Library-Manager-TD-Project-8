@@ -1,0 +1,12 @@
+extends layout.pug
+
+block head
+  title 404 Page Not Found
+  
+block content
+  h1=`${err.message} - Status: ${err.status}`
+  p Sorry! We couldn't find the page you were looking for.
+  br
+  p
+    a.button(href='/') Home
+  

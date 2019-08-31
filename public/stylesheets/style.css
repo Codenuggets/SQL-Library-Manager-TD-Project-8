@@ -92,6 +92,24 @@ input[type=text] {
   width: 300px;
 }
 
+button#search {
+  color: white;
+  background: #019875;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 10px 14px 12px;
+  font-size: 14px;
+  border-radius: 2px;
+  cursor: pointer;
+  float: right;
+  border: 0;
+}
+
+input.search {
+  float: right;
+  border: 0.5px solid grey;
+  margin-right: 1px;
+}
+
 .error {
   color: rgb(236, 15, 15);
 }

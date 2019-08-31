@@ -5,20 +5,28 @@ block head
 
 block content
   h1 Books
-  p
-    a.button(href='/books/new') Create New Book
-  table
-    thead
-      tr
-        th Title
-        th Author
-        th Genre
-        th Year
-    tbody
-      each book in books
+  div
+    p
+      a.button(href='/books/new') Create New Book
+      form(method="post" action="/books")
+        button#search(type="submit") Search
+        input.search(placeholder="title, author, etc..." name="searchInput")
+  
+  if books.length === 0
+    h2 Sorry, No results found.
+  else   
+    table
+      thead
         tr
-          td
-            a(href='/books/' + book.id)=book.title
-          td=book.author
-          td=book.genre
-          td=book.year
+          th Title
+          th Author
+          th Genre
+          th Year
+      tbody
+        each book in books
+          tr
+            td
+              a(href='/books/' + book.id)=book.title
+            td=book.author
+            td=book.genre
+            td=book.year

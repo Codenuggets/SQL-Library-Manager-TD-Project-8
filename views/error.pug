@@ -1,0 +1,12 @@
+extends layout.pug
+
+block head
+  title Error
+  
+block content
+  h1=`${err.message} - Status: ${err.status}`
+  p Sorry! There was an unexpected error on the server.
+  br
+  p
+    a.button(href='/') Home
+  

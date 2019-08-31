@@ -5,7 +5,9 @@ block head
   
 block content
   h1 Update Book
-  form
+  if success
+    h2(style="color:#019875")=success
+  form(method="post" action="/books/" + book.id)
     p
       label(for="title") Title
       input#title(name="title" type="text" value=book.title)
