@@ -13,41 +13,28 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/static', express.static('public'));
 
-// async function search() {
-//   const searchInput = document.querySelector('.search');
-//   const results = await Book.findAll({
-//     where: {
-//       title: {
-//         $iLike: `%${searchInput.value}%`,
-//       },
-//       $or: [
-//         {
-//           author:
-//           {
-//             $iLike: `%${searchInput.value}%`,
-//           }
-//         },
-//         {
-//           genre:
-//           {
-//             $iLike: `%${searchInput.value}%`,
-//           }
-//         }
-//       ]
-//     }
-//   });
-//   console.log("hi!");
-// }
-
 app.get('/', (req, res) => {
   res.redirect('/books');
 });
 
 app.get('/books', async (req, res) => {
   try {
+    let page = 1;
+    if(req.query.page) {
+      page = req.query.page;
+    }
+    const pagedBooks = await Book.findAll({
+      limit: 5,
+      offset: (5 * page)
+    });
+    const books = pagedBooks.map(book => book.toJSON());
     const allBooks = await Book.findAll();
-    const books = allBooks.map(book => book.toJSON());
-    res.render('index', { books });
+    const booksForPages = allBooks.map(book => book.toJSON());
+    let pages = [];
+    for(let i = 1; i <= Math.round(booksForPages.length/5); i++) {
+      pages.push(i)
+    }
+    res.render('index', { books, pages });
   } catch (err) {
     console.error('Error grabbing books ', err);
   }
@@ -80,7 +67,7 @@ app.post('/books', async(req, res) => {
           {
             year:
             {
-              [Op.contains]: `${splitYear.map(Number)}`
+              [Op.like]: `%${req.body.searchInput}%`
             }
           },
         ]

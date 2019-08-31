@@ -69,6 +69,7 @@ tr:nth-child(2n) {
 
 td {
   padding: 5px 20px 5px 10px;
+  height: 50px;
 }
 
 label {
@@ -112,4 +113,50 @@ input.search {
 
 .error {
   color: rgb(236, 15, 15);
+}
+
+div.create {
+  width: 50%;
+  display: block;
+  overflow: auto;
+  float: left;
+}
+
+div.search {
+  width: 50%;
+  display: block;
+  overflow: auto;
+  float: right;
+  margin-top: 14px;
+}
+
+table {
+  padding: inherit;
+  width: 100%;
+}
+
+form.search {
+  padding: 0;
+  margin: 0;
+}
+
+.pagination{
+  margin: 40px 0 0 0;
+  text-align: center;
+}
+
+.pagination li {
+  display: inline;
+}
+
+.pagination li a{
+  border: 0;
+  background-color: #019875;
+  color: #fff;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-decoration: none;
+  margin: 3px;
 }

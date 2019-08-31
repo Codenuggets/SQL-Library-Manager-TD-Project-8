@@ -5,12 +5,13 @@ block head
 
 block content
   h1 Books
-  div
+  div.create
     p
       a.button(href='/books/new') Create New Book
-      form(method="post" action="/books")
-        button#search(type="submit") Search
-        input.search(placeholder="title, author, etc..." name="searchInput")
+  div.search
+    form.search(method="post" action="/books")
+      button#search(type="submit") Search
+      input.search(placeholder="title, author, etc..." name="searchInput")
   
   if books.length === 0
     h2 Sorry, No results found.
@@ -30,3 +31,10 @@ block content
             td=book.author
             td=book.genre
             td=book.year
+    if pages
+      div.pagination
+        ul
+          each page in pages
+            li
+              a(href="?page=" + page)=page
+          
