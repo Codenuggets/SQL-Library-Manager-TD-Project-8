@@ -164,7 +164,7 @@ app.post('/books/:id/delete', async (req, res) => {
     const chosenBook = await Book.findByPk(req.params.id);
     // Then the book is deleted with the destroy method, the new-book view is rendered with a message letting the user know they Successfully deleted the book
     await chosenBook.destroy();
-    res.render('new-book', { success: "Successfully deleted book!"});
+    res.redirect('/books');
     res.end();
   } catch (err) {
     console.error("Error deleting book ", err);
