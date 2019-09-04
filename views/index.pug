@@ -12,9 +12,10 @@ block content
     form.search(method="post" action="/books")
       button#search(type="submit") Search
       input.search(placeholder="title, author, etc..." name="searchInput")
-  
+  //- Checks to see if no books in case the user made a custom search
   if books.length === 0
     h2 Sorry, No results found.
+  //- Other wise sets up the table and interpolates through each book and sets the values
   else   
     table
       thead
@@ -31,10 +32,12 @@ block content
             td=book.author
             td=book.genre
             td=book.year
+    //- Checks if any pages are passed to the page and sets up the links for each page in the page array        
     if pages
       div.pagination
         ul
           each page in pages
             li
+              //- Pushes a query to send to app.js which returns a different page
               a(href="?page=" + page)=page
           
