@@ -5,6 +5,7 @@ block head
   
 block content
   h1 Update Book
+  //- Checks for success object and sets a h2 tag to it. Can either be for successfully creating or deleting book
   if success
     h2(style="color:#019875")=success
   form(method="post" action="/books/" + book.id)
