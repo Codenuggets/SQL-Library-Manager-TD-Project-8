@@ -5,8 +5,10 @@ block head
 
 block content
   h1 New Book
+  //- Checks for success object and sets a h2 element to it if it exists. Can either be for successfully creating or deleting book
   if success
     h2(style="color:#019875")=success
+  //- Checks for error object and displays if it exists. For validation purposes  
   if errors
     h2.error Oooops!
     ul.error
