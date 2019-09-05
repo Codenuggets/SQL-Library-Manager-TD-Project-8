@@ -39,7 +39,7 @@ app.get('/books', async (req, res) => {
     const booksForPages = allBooks.map(book => book.toJSON());
     // Declares empty array to be used to push how many page links need to be generated in the pug template
     let pages = [];
-    for(let i = 1; i <= Math.round(booksForPages.length/5); i++) {
+    for(let i = 1; i <= Math.floor(booksForPages.length/5); i++) {
       pages.push(i)
     }
     res.render('index', { books, pages });
