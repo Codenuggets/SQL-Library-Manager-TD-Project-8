@@ -8,6 +8,11 @@ block content
   //- Checks for success object and sets a h2 tag to it. 
   if success
     h2(style="color:#019875")=success
+  if errors
+    h2.error Oooops!
+    ul.error
+      each error in errors
+        li=error
   form(method="post" action="/books/" + book.id)
     p
       label(for="title") Title

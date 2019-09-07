@@ -153,7 +153,16 @@ app.post('/books/:id', async (req, res) => {
     res.render('update-book', { book, success: "Successfully updated book!"});
     res.end();
   } catch (err) {
-    console.error("Error updating book ", err);
+    if(err.name === 'SequelizeValidationError'){
+      // If so the error messages are passed into the error object, the page is rerendered with the message displayed for the user
+      const errors = err.errors.map(error => error.message);
+      const book = await Book.findByPk(req.params.id);
+      res.render('update-book', { book, errors });
+      res.end();
+    } else {
+      console.error("Error updating book ", err);
+    }
+
   }
 });
 
